@@ -33,6 +33,7 @@ from abc import abstractmethod
 import attr
 
 import benchbuild.utils.actions as actns
+from benchbuild.project import build_dir
 from benchbuild.settings import CFG
 from benchbuild.utils.requirements import Requirement
 
@@ -161,14 +162,15 @@ class Experiment(metaclass=ExperimentRegistry):
                 version_str = source.to_str(*variant)
 
                 p = prj_cls(self, variant=var_context)
+                p.builddir = build_dir(self, p)
                 atomic_actions: Actions = [
                     actns.Clean(p),
                     actns.MakeBuildDir(p),
                     actns.Echo(message="Selected {0} with version {1}".format(
                         p.name, version_str)),
                     actns.ProjectEnvironment(p),
-                    actns.Containerize(obj=p,
-                                       actions=self.actions_for_project(p))
+                    #actns.Containerize(obj=p,
+                    #                  actions=self.actions_for_project(p))
                 ]
 
                 prj_actions.append(actns.RequireAll(actions=atomic_actions))
@@ -204,7 +206,7 @@ class Experiment(metaclass=ExperimentRegistry):
         """Return a series of actions for a run time experiment."""
         return [
             actns.Compile(project),
-            actns.Run(project),
+            actns.Run(obj=project, project=project, experiment=self),
             actns.Clean(project)
         ]
 
