@@ -30,8 +30,6 @@ from plumbum.path.local import LocalPath
 from pygtrie import StringTrie
 
 from benchbuild import source
-from benchbuild.extensions import compiler
-from benchbuild.extensions import run as ext_run
 from benchbuild.settings import CFG
 from benchbuild.utils import db, run, unionfs
 from benchbuild.utils.requirements import Requirement
@@ -185,8 +183,6 @@ class Project(metaclass=ProjectDecorator):
                 f'{mod_ident} does not define a GROUP class attribute.')
         return new_self
 
-    experiment = attr.ib()
-
     variant: VariantContext = attr.ib()
 
     @variant.default
@@ -224,7 +220,7 @@ class Project(metaclass=ProjectDecorator):
             raise TypeError("{attribute} must be a valid UUID object")
 
     builddir: local.path = attr.ib(default=attr.Factory(lambda self: local.path(
-        str(CFG["build_dir"])) / self.experiment.name / self.id / self.run_uuid,
+        str(CFG["build_dir"])) / self.id / self.run_uuid,
                                                         takes_self=True))
 
     source: Sources = attr.ib(
@@ -236,11 +232,7 @@ class Project(metaclass=ProjectDecorator):
     def __default_primary_source(self) -> str:
         return source.primary(*self.source).key
 
-    compiler_extension = attr.ib(
-        default=attr.Factory(lambda self: ext_run.WithTimeout(
-            compiler.RunCompiler(self, self.experiment)),
-                             takes_self=True))
-
+    compiler_extension = attr.ib(default=None)
     runtime_extension = attr.ib(default=None)
 
     def __attrs_post_init__(self) -> None:
