@@ -23,11 +23,7 @@ setup(name='benchbuild',
           "docs", "extern", "filters", "linker", "src", "statistics", "tests",
           "results"
       ]),
-      package_data={
-          "benchbuild.utils": extra_files,
-          "benchbuild": sql_extra_files,
-          "becnbuild.projects": src_extra_files
-      },
+      package_data={"benchbuild": RESOURCES},
       include_package_data=True,
       setup_requires=["pytest-runner", "setuptools_scm"],
       tests_require=["pytest", "pytest-describe"],
