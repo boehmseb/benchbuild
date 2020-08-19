@@ -1,7 +1,6 @@
 import csv
 import os
 
-import pandas as pd
 import sqlalchemy as sa
 
 from benchbuild.experiment import ExperimentRegistry
@@ -60,6 +59,7 @@ class FullDump(Report):
 
     def report(self):
         import benchbuild.utils.schema as s
+        import pandas as pd
         tables = s.BASE.metadata.tables
         required_tables = []
         for _, table in tables.items():
