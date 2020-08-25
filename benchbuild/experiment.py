@@ -51,8 +51,10 @@ class ExperimentRegistry(type):
 
     experiments = {}
 
-    def __new__(mcs: tp.Type[tp.Any], name: str, bases: tp.Tuple[type, ...],
-                attrs: tp.Dict[str, tp.Any]) -> tp.Any:
+    def __new__(
+        mcs: tp.Type[tp.Any], name: str, bases: tp.Tuple[type, ...],
+        attrs: tp.Dict[str, tp.Any]
+    ) -> tp.Any:
         """Register a project in the registry."""
         cls = super(ExperimentRegistry, mcs).__new__(mcs, name, bases, attrs)
         if bases and 'NAME' in attrs:
@@ -98,11 +100,14 @@ class Experiment(metaclass=ExperimentRegistry):
         if not cls.NAME:
             raise AttributeError(
                 "{0} @ {1} does not define a NAME class attribute.".format(
-                    cls.__name__, cls.__module__))
+                    cls.__name__, cls.__module__
+                )
+            )
         return new_self
 
     name: str = attr.ib(
-        default=attr.Factory(lambda self: type(self).NAME, takes_self=True))
+        default=attr.Factory(lambda self: type(self).NAME, takes_self=True)
+    )
 
     projects: Projects = \
         attr.ib(default=attr.Factory(dict))
@@ -123,8 +128,10 @@ class Experiment(metaclass=ExperimentRegistry):
     @id.validator
     def validate_id(self, _: tp.Any, new_id: uuid.UUID) -> None:
         if not isinstance(new_id, uuid.UUID):
-            raise TypeError("%s expected to be '%s' but got '%s'" %
-                            (str(new_id), str(uuid.UUID), str(type(new_id))))
+            raise TypeError(
+                "%s expected to be '%s' but got '%s'" %
+                (str(new_id), str(uuid.UUID), str(type(new_id)))
+            )
 
     schema = attr.ib()
 
@@ -169,16 +176,16 @@ class Experiment(metaclass=ExperimentRegistry):
                 var_context = source.context(*variant)
                 version_str = source.to_str(*variant)
 
-                p = prj_cls(self, variant=var_context)
+                p = prj_cls(var_context)
                 p.builddir = build_dir(self, p)
                 atomic_actions: Actions = [
                     actns.Clean(p),
                     actns.MakeBuildDir(p),
-                    actns.Echo(message="Selected {0} with version {1}".format(
-                        p.name, version_str)),
+                    actns.Echo(
+                        message="Selected {0} with version {1}".
+                        format(p.name, version_str)
+                    ),
                     actns.ProjectEnvironment(p),
-                    #actns.Containerize(obj=p,
-                    #                  actions=self.actions_for_project(p))
                 ]
 
                 prj_actions.append(actns.RequireAll(actions=atomic_actions))
@@ -209,8 +216,7 @@ class Experiment(metaclass=ExperimentRegistry):
             return [source.context(*variants[0])]
         raise ValueError('At least one variant is rerquired!')
 
-    @staticmethod
-    def default_runtime_actions(project: Project) -> Actions:
+    def default_runtime_actions(self, project: Project) -> Actions:
         """Return a series of actions for a run time experiment."""
         return [
             actns.Compile(project),
@@ -218,8 +224,7 @@ class Experiment(metaclass=ExperimentRegistry):
             actns.Clean(project)
         ]
 
-    @staticmethod
-    def default_compiletime_actions(project: Project) -> Actions:
+    def default_compiletime_actions(self, project: Project) -> Actions:
         """Return a series of actions for a compile time experiment."""
         return [actns.Compile(project), actns.Clean(project)]
 
