@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="simbuerg">
+  <link rel="canonical" href="https://polyjit.github.io/benchbuild/concepts/source/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Source - BenchBuild</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../css/mkapi-common.css" rel="stylesheet" />
+  <link href="../../css/mkapi-readthedocs.css" rel="stylesheet" />
+  <link href="//use.fontawesome.com/releases/v5.8.1/css/all.css" rel="stylesheet" />
+  <link href="//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css" rel="stylesheet" />
+  <link href="../../css/pheasant.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Source";
+    var mkdocs_page_input_path = "concepts/source.md";
+    var mkdocs_page_url = "/benchbuild/concepts/source/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> BenchBuild</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">BenchBuild Documentation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../basics/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../basics/configuration/">Configuration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../basics/containers/">Containers</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Concepts</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Source</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#general">General</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#versioning">Versioning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#http">HTTP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git">Git</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsync">Rsync</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../environments/">Environment</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../projects/">Project</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../experiments/">Experiment</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Advanced Usage</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../advanced/">TODO</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">About</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../CHANGELOG/">Release Notes</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">BenchBuild</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Concepts &raquo;</li>
+        
+      
+    
+    <li>Source</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                
+<h1 id="source">Source</h1>
+<p>TODO.</p>
+<h2 id="general">General</h2>
+<div class="mkapi-node" id="benchbuild.source.base">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object module code top">
+    <div class="mkapi-object-kind module top">module</div>
+    <div class="mkapi-object-body module top"><code class="mkapi-object-prefix">benchbuild.source.</code><code class="mkapi-object-name">base</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Provide a base interface for downloadable sources.</p></div>
+    </div>
+  <div class="mkapi-section classes">
+      <div class="mkapi-section-name classes">
+          <span class="mkapi-section-name-body classes">Classes</span> 
+        </div>
+      <div class="mkapi-section-body classes"><ul class="mkapi-items">
+<li class="class"><code class="mkapi-item-name">Variant</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Provide a 'string'-like wrapper around source version information.</span></li>
+
+<li class="class"><code class="mkapi-item-name">Fetchable</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Base class for protocol classes.</span></li>
+
+<li class="class"><code class="mkapi-item-name">Expandable</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Base class for protocol classes.</span></li>
+
+<li class="class"><code class="mkapi-item-name">Versioned</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Base class for protocol classes.</span></li>
+
+<li class="abstract-class"><code class="mkapi-item-name">FetchableSource</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwds</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Base class for fetchable sources.</span></li>
+
+<li class="class"><code class="mkapi-item-name">NoSource</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Base class for fetchable sources.</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section functions">
+      <div class="mkapi-section-name functions">
+          <span class="mkapi-section-name-body functions">Functions</span> 
+        </div>
+      <div class="mkapi-section-body functions"><ul class="mkapi-items">
+<li class="function"><code class="mkapi-item-name">context</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*variants</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(dict(str: Variant))</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Convert an arbitrary number of variants into a VariantContext.</span></li>
+
+<li class="function"><code class="mkapi-item-name">default</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*sources</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(dict(str: Variant))</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Return the collective 'default' version for the given sources.</span></li>
+
+<li class="function"><code class="mkapi-item-name">primary</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*sources</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(SourceT)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Return the implicit 'main' source of a project.</span></li>
+
+<li class="function"><code class="mkapi-item-name">product</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*sources</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(iterable of (any, ...))</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Return the cross product of the given sources.</span></li>
+
+<li class="function"><code class="mkapi-item-name">sources_as_dict</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*sources</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(dict(str: Fetchable))</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Convert fetchables to a dictionary.</span></li>
+
+<li class="function"><code class="mkapi-item-name">target_prefix</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Return the prefix directory for all downloads.</span></li>
+
+<li class="function"><code class="mkapi-item-name">to_str</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*variants</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Convert an arbitrary number of variants into their string representation.</span></li>
+
+
+</ul></div>
+    </div>
+  </div>
+
+</div>
+
+<h2 id="versioning">Versioning</h2>
+<div class="mkapi-node" id="benchbuild.source.versions">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object module code top">
+    <div class="mkapi-object-kind module top">module</div>
+    <div class="mkapi-object-body module top"><code class="mkapi-object-prefix">benchbuild.source.</code><code class="mkapi-object-name">versions</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section classes">
+      <div class="mkapi-section-name classes">
+          <span class="mkapi-section-name-body classes">Classes</span> 
+        </div>
+      <div class="mkapi-section-body classes"><ul class="mkapi-items">
+<li class="abstract-class"><code class="mkapi-item-name">BaseVersionGroup</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwds</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Base class for protocol classes.</span></li>
+
+<li class="abstract-class"><code class="mkapi-item-name">BaseVersionFilter</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwds</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Base class for fetchable sources.</span></li>
+
+<li class="class"><code class="mkapi-item-name">SingleVersionFilter</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">A simple single versions only filter.</span></li>
+
+
+</ul></div>
+    </div>
+  </div>
+
+</div>
+
+<h2 id="http">HTTP</h2>
+<div class="mkapi-node" id="benchbuild.source.http.HTTP">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object class code top">
+    <div class="mkapi-object-kind class top">class</div>
+    <div class="mkapi-object-body class top"><code class="mkapi-object-prefix">benchbuild.source.http.</code><code class="mkapi-object-name">HTTP</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwds</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section bases">
+      <div class="mkapi-section-name bases">
+          <span class="mkapi-section-name-body bases">Bases</span> 
+        </div>
+      <div class="mkapi-section-body bases">
+<span class="mkapi-base">benchbuild.source.base.FetchableSource</span>
+
+<span class="mkapi-base">benchbuild.source.base.Fetchable</span>
+
+<span class="mkapi-base">benchbuild.source.base.Expandable</span>
+
+<span class="mkapi-base">benchbuild.source.base.Versioned</span>
+
+<span class="mkapi-base">typing.Protocol</span>
+
+<span class="mkapi-base">typing.Generic</span>
+</div>
+    </div>
+  <div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Fetch the downloadable source via http.</p></div>
+    </div>
+  <div class="mkapi-section classes">
+      <div class="mkapi-section-name classes">
+          <span class="mkapi-section-name-body classes">Classes</span> 
+        </div>
+      <div class="mkapi-section-body classes"><ul class="mkapi-items">
+<li class="class"><code class="mkapi-item-name"><a href="#typing._ProtocolMeta">_ProtocolMeta</a></code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Metaclass for defining Abstract Base Classes (ABCs).</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section methods">
+      <div class="mkapi-section-name methods">
+          <span class="mkapi-section-name-body methods">Methods</span> 
+        </div>
+      <div class="mkapi-section-body methods"><ul class="mkapi-items">
+<li class="classmethod"><code class="mkapi-item-name"><a href="#typing.Protocol.__init_subclass__">__init_subclass__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">This method is called when a class is subclassed.</span></li>
+
+<li class="method"><code class="mkapi-item-name"><a href="#benchbuild.source.http.HTTP.version">version</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">target_dir</code>, <code class="mkapi-object-signature">version</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Fetch the requested version and place it in the target_dir</span></li>
+
+<li class="method"><code class="mkapi-item-name"><a href="#benchbuild.source.http.HTTP.versions">versions</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(List[str])</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">List all available versions of this source.</span></li>
+
+
+</ul></div>
+    </div>
+  </div>
+
+  <div class="mkapi-members">
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing._ProtocolMeta">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object class code top">
+    <div class="mkapi-object-kind class top">class</div>
+    <div class="mkapi-object-body class top"><code class="mkapi-object-prefix">typing.</code><code class="mkapi-object-name">_ProtocolMeta</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">name</code>, <code class="mkapi-object-signature">bases</code>, <code class="mkapi-object-signature">namespace</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section bases">
+      <div class="mkapi-section-name bases">
+          <span class="mkapi-section-name-body bases">Bases</span> 
+        </div>
+      <div class="mkapi-section-body bases">
+<span class="mkapi-base">abc.ABCMeta</span>
+</div>
+    </div>
+  <div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Metaclass for defining Abstract Base Classes (ABCs).</p>
+<p>Use this metaclass to create an ABC.  An ABC can be subclassed
+directly, and then acts as a mix-in class.  You can also register
+unrelated concrete classes (even built-in classes) and unrelated
+ABCs as 'virtual subclasses' -- these and their descendants will
+be considered subclasses of the registering ABC by the built-in
+issubclass() function, but the registering ABC won't show up in
+their MRO (Method Resolution Order) nor will method
+implementations defined by the registering ABC be callable (not
+even via super()).</p></div>
+    </div>
+  <div class="mkapi-section methods">
+      <div class="mkapi-section-name methods">
+          <span class="mkapi-section-name-body methods">Methods</span> 
+        </div>
+      <div class="mkapi-section-body methods"><ul class="mkapi-items">
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#typing._ProtocolMeta.__instancecheck__">__instancecheck__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">instance</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Override for isinstance(instance, cls).</span></li>
+
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#abc.ABCMeta.__subclasscheck__">__subclasscheck__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Override for issubclass(subclass, cls).</span></li>
+
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#abc.ABCMeta.register">register</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Register a virtual subclass of an ABC.</span></li>
+
+
+</ul></div>
+    </div>
+  </div>
+
+  <div class="mkapi-members">
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="abc.ABCMeta.register">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">register</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Register a virtual subclass of an ABC.</p>
+<p>Returns the subclass, to allow usage as a class decorator.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="abc.ABCMeta.__subclasscheck__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">__subclasscheck__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Override for issubclass(subclass, cls).</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing._ProtocolMeta.__instancecheck__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">__instancecheck__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">instance</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Override for isinstance(instance, cls).</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing.Protocol.__init_subclass__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object classmethod code">
+    <div class="mkapi-object-kind classmethod">classmethod</div>
+    <div class="mkapi-object-body classmethod"><code class="mkapi-object-name">__init_subclass__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>This method is called when a class is subclassed.</p>
+<p>The default implementation does nothing. It may be
+overridden to extend subclasses.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="benchbuild.source.http.HTTP.version">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object method code">
+    <div class="mkapi-object-kind method">method</div>
+    <div class="mkapi-object-body method"><code class="mkapi-object-name">version</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">target_dir</code>, <code class="mkapi-object-signature">version</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Fetch the requested version and place it in the target_dir</p></div>
+    </div>
+  <div class="mkapi-section parameters">
+      <div class="mkapi-section-name parameters">
+          <span class="mkapi-section-name-body parameters">Parameters</span> 
+        </div>
+      <div class="mkapi-section-body parameters"><ul class="mkapi-items">
+<li><code class="mkapi-item-name">target_dir</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">The filesystem path where the version should be placed in.</span></li>
+
+<li><code class="mkapi-item-name">version</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">The version that should be fetched from the local cache.</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section returns">
+      <div class="mkapi-section-name returns">
+          <span class="mkapi-section-name-body returns">Returns</span> <span class="mkapi-item-type">(str)</span>
+        </div>
+      <div class="mkapi-section-body returns"><p>[description]</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="benchbuild.source.http.HTTP.versions">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object method code">
+    <div class="mkapi-object-kind method">method</div>
+    <div class="mkapi-object-body method"><code class="mkapi-object-name">versions</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>List all available versions of this source.</p></div>
+    </div>
+  <div class="mkapi-section returns">
+      <div class="mkapi-section-name returns">
+          <span class="mkapi-section-name-body returns">Returns</span> <span class="mkapi-item-type">(List[str])</span>
+        </div>
+      <div class="mkapi-section-body returns"><p>The list of all available versions.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+  </div>
+
+</div>
+
+<h2 id="git">Git</h2>
+<div class="mkapi-node" id="benchbuild.source.git.Git">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object class code top">
+    <div class="mkapi-object-kind class top">class</div>
+    <div class="mkapi-object-body class top"><code class="mkapi-object-prefix">benchbuild.source.git.</code><code class="mkapi-object-name">Git</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwds</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section bases">
+      <div class="mkapi-section-name bases">
+          <span class="mkapi-section-name-body bases">Bases</span> 
+        </div>
+      <div class="mkapi-section-body bases">
+<span class="mkapi-base">benchbuild.source.base.FetchableSource</span>
+
+<span class="mkapi-base">benchbuild.source.base.Fetchable</span>
+
+<span class="mkapi-base">benchbuild.source.base.Expandable</span>
+
+<span class="mkapi-base">benchbuild.source.base.Versioned</span>
+
+<span class="mkapi-base">typing.Protocol</span>
+
+<span class="mkapi-base">typing.Generic</span>
+</div>
+    </div>
+  <div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Fetch the downloadable source via git.</p></div>
+    </div>
+  <div class="mkapi-section attributes">
+      <div class="mkapi-section-name attributes">
+          <span class="mkapi-section-name-body attributes">Attributes</span> 
+        </div>
+      <div class="mkapi-section-body attributes"><ul class="mkapi-items">
+
+
+
+<li class="readonly-property"><code class="mkapi-item-name">default</code>
+<span class="mkapi-item-type">(Variant)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Return current HEAD as default version for this Git project.</span></li>
+
+
+
+
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section classes">
+      <div class="mkapi-section-name classes">
+          <span class="mkapi-section-name-body classes">Classes</span> 
+        </div>
+      <div class="mkapi-section-body classes"><ul class="mkapi-items">
+<li class="class"><code class="mkapi-item-name"><a href="#typing._ProtocolMeta">_ProtocolMeta</a></code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Metaclass for defining Abstract Base Classes (ABCs).</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section methods">
+      <div class="mkapi-section-name methods">
+          <span class="mkapi-section-name-body methods">Methods</span> 
+        </div>
+      <div class="mkapi-section-body methods"><ul class="mkapi-items">
+<li class="classmethod"><code class="mkapi-item-name"><a href="#typing.Protocol.__init_subclass__">__init_subclass__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">This method is called when a class is subclassed.</span></li>
+
+<li class="method"><code class="mkapi-item-name"><a href="#benchbuild.source.git.Git.fetch">fetch</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Clone the repository, if needed.</span></li>
+
+<li class="method"><code class="mkapi-item-name"><a href="#benchbuild.source.git.Git.version">version</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">target_dir</code>, <code class="mkapi-object-signature">version</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Create a new git worktree pointing to the requested version.</span></li>
+
+<li class="method"><code class="mkapi-item-name"><a href="#benchbuild.source.git.Git.versions">versions</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(List[str])</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">List all available versions of this source.</span></li>
+
+
+</ul></div>
+    </div>
+  </div>
+
+  <div class="mkapi-members">
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing._ProtocolMeta">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object class code top">
+    <div class="mkapi-object-kind class top">class</div>
+    <div class="mkapi-object-body class top"><code class="mkapi-object-prefix">typing.</code><code class="mkapi-object-name">_ProtocolMeta</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">name</code>, <code class="mkapi-object-signature">bases</code>, <code class="mkapi-object-signature">namespace</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section bases">
+      <div class="mkapi-section-name bases">
+          <span class="mkapi-section-name-body bases">Bases</span> 
+        </div>
+      <div class="mkapi-section-body bases">
+<span class="mkapi-base">abc.ABCMeta</span>
+</div>
+    </div>
+  <div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Metaclass for defining Abstract Base Classes (ABCs).</p>
+<p>Use this metaclass to create an ABC.  An ABC can be subclassed
+directly, and then acts as a mix-in class.  You can also register
+unrelated concrete classes (even built-in classes) and unrelated
+ABCs as 'virtual subclasses' -- these and their descendants will
+be considered subclasses of the registering ABC by the built-in
+issubclass() function, but the registering ABC won't show up in
+their MRO (Method Resolution Order) nor will method
+implementations defined by the registering ABC be callable (not
+even via super()).</p></div>
+    </div>
+  <div class="mkapi-section methods">
+      <div class="mkapi-section-name methods">
+          <span class="mkapi-section-name-body methods">Methods</span> 
+        </div>
+      <div class="mkapi-section-body methods"><ul class="mkapi-items">
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#typing._ProtocolMeta.__instancecheck__">__instancecheck__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">instance</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Override for isinstance(instance, cls).</span></li>
+
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#abc.ABCMeta.__subclasscheck__">__subclasscheck__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Override for issubclass(subclass, cls).</span></li>
+
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#abc.ABCMeta.register">register</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Register a virtual subclass of an ABC.</span></li>
+
+
+</ul></div>
+    </div>
+  </div>
+
+  <div class="mkapi-members">
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="abc.ABCMeta.register">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">register</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Register a virtual subclass of an ABC.</p>
+<p>Returns the subclass, to allow usage as a class decorator.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="abc.ABCMeta.__subclasscheck__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">__subclasscheck__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Override for issubclass(subclass, cls).</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing._ProtocolMeta.__instancecheck__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">__instancecheck__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">instance</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Override for isinstance(instance, cls).</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing.Protocol.__init_subclass__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object classmethod code">
+    <div class="mkapi-object-kind classmethod">classmethod</div>
+    <div class="mkapi-object-body classmethod"><code class="mkapi-object-name">__init_subclass__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>This method is called when a class is subclassed.</p>
+<p>The default implementation does nothing. It may be
+overridden to extend subclasses.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="benchbuild.source.git.Git.fetch">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object method code">
+    <div class="mkapi-object-kind method">method</div>
+    <div class="mkapi-object-body method"><code class="mkapi-object-name">fetch</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Clone the repository, if needed.</p>
+<p>This will create a git clone inside the global cache directory.</p></div>
+    </div>
+  <div class="mkapi-section parameters">
+      <div class="mkapi-section-name parameters">
+          <span class="mkapi-section-name-body parameters">Parameters</span> 
+        </div>
+      <div class="mkapi-section-body parameters"><ul class="mkapi-items">
+<li><code class="mkapi-item-name">version</code>
+<span class="mkapi-item-type">(Optional[str], optional)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">[description]. Defaults to None.</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section returns">
+      <div class="mkapi-section-name returns">
+          <span class="mkapi-section-name-body returns">Returns</span> <span class="mkapi-item-type">(str)</span>
+        </div>
+      <div class="mkapi-section-body returns"><p>[description]</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="benchbuild.source.git.Git.version">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object method code">
+    <div class="mkapi-object-kind method">method</div>
+    <div class="mkapi-object-body method"><code class="mkapi-object-name">version</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">target_dir</code>, <code class="mkapi-object-signature">version=&#39;HEAD&#39;</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Create a new git worktree pointing to the requested version.</p></div>
+    </div>
+  <div class="mkapi-section parameters">
+      <div class="mkapi-section-name parameters">
+          <span class="mkapi-section-name-body parameters">Parameters</span> 
+        </div>
+      <div class="mkapi-section-body parameters"><ul class="mkapi-items">
+<li><code class="mkapi-item-name">target_dir</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">The filesystem path where the new worktree should live.</span></li>
+
+<li><code class="mkapi-item-name">version</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">The desired version the new worktree needs to point to.
+Defaults to 'HEAD'.</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section returns">
+      <div class="mkapi-section-name returns">
+          <span class="mkapi-section-name-body returns">Returns</span> <span class="mkapi-item-type">(str)</span>
+        </div>
+      <div class="mkapi-section-body returns"><p>[description]</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="benchbuild.source.git.Git.versions">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object method code">
+    <div class="mkapi-object-kind method">method</div>
+    <div class="mkapi-object-body method"><code class="mkapi-object-name">versions</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>List all available versions of this source.</p></div>
+    </div>
+  <div class="mkapi-section returns">
+      <div class="mkapi-section-name returns">
+          <span class="mkapi-section-name-body returns">Returns</span> <span class="mkapi-item-type">(List[str])</span>
+        </div>
+      <div class="mkapi-section-body returns"><p>The list of all available versions.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+  </div>
+
+</div>
+
+<div class="mkapi-node" id="benchbuild.source.git.GitSubmodule">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object class code top">
+    <div class="mkapi-object-kind class top">class</div>
+    <div class="mkapi-object-body class top"><code class="mkapi-object-prefix">benchbuild.source.git.</code><code class="mkapi-object-name">GitSubmodule</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwds</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section bases">
+      <div class="mkapi-section-name bases">
+          <span class="mkapi-section-name-body bases">Bases</span> 
+        </div>
+      <div class="mkapi-section-body bases">
+<span class="mkapi-base">benchbuild.source.git.Git</span>
+
+<span class="mkapi-base">benchbuild.source.base.FetchableSource</span>
+
+<span class="mkapi-base">benchbuild.source.base.Fetchable</span>
+
+<span class="mkapi-base">benchbuild.source.base.Expandable</span>
+
+<span class="mkapi-base">benchbuild.source.base.Versioned</span>
+
+<span class="mkapi-base">typing.Protocol</span>
+
+<span class="mkapi-base">typing.Generic</span>
+</div>
+    </div>
+  <div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Fetch the downloadable source via git.</p></div>
+    </div>
+  <div class="mkapi-section attributes">
+      <div class="mkapi-section-name attributes">
+          <span class="mkapi-section-name-body attributes">Attributes</span> 
+        </div>
+      <div class="mkapi-section-body attributes"><ul class="mkapi-items">
+
+
+
+<li class="readonly-property"><code class="mkapi-item-name">default</code>
+<span class="mkapi-item-type">(Variant)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Return current HEAD as default version for this Git project.</span></li>
+
+<li class="readonly-property"><code class="mkapi-item-name">is_expandable</code>
+<span class="mkapi-item-type">(bool)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Submodules will not participate in version expansion.</span></li>
+
+
+
+
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section classes">
+      <div class="mkapi-section-name classes">
+          <span class="mkapi-section-name-body classes">Classes</span> 
+        </div>
+      <div class="mkapi-section-body classes"><ul class="mkapi-items">
+<li class="class"><code class="mkapi-item-name"><a href="#typing._ProtocolMeta">_ProtocolMeta</a></code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Metaclass for defining Abstract Base Classes (ABCs).</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section methods">
+      <div class="mkapi-section-name methods">
+          <span class="mkapi-section-name-body methods">Methods</span> 
+        </div>
+      <div class="mkapi-section-body methods"><ul class="mkapi-items">
+<li class="classmethod"><code class="mkapi-item-name"><a href="#typing.Protocol.__init_subclass__">__init_subclass__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">This method is called when a class is subclassed.</span></li>
+
+<li class="method"><code class="mkapi-item-name"><a href="#benchbuild.source.git.Git.fetch">fetch</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Clone the repository, if needed.</span></li>
+
+<li class="method"><code class="mkapi-item-name"><a href="#benchbuild.source.git.Git.version">version</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">target_dir</code>, <code class="mkapi-object-signature">version</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Create a new git worktree pointing to the requested version.</span></li>
+
+<li class="method"><code class="mkapi-item-name"><a href="#benchbuild.source.git.Git.versions">versions</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code>
+<span class="mkapi-item-type">(List[str])</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">List all available versions of this source.</span></li>
+
+
+</ul></div>
+    </div>
+  </div>
+
+  <div class="mkapi-members">
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing._ProtocolMeta">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object class code top">
+    <div class="mkapi-object-kind class top">class</div>
+    <div class="mkapi-object-body class top"><code class="mkapi-object-prefix">typing.</code><code class="mkapi-object-name">_ProtocolMeta</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">name</code>, <code class="mkapi-object-signature">bases</code>, <code class="mkapi-object-signature">namespace</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section bases">
+      <div class="mkapi-section-name bases">
+          <span class="mkapi-section-name-body bases">Bases</span> 
+        </div>
+      <div class="mkapi-section-body bases">
+<span class="mkapi-base">abc.ABCMeta</span>
+</div>
+    </div>
+  <div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Metaclass for defining Abstract Base Classes (ABCs).</p>
+<p>Use this metaclass to create an ABC.  An ABC can be subclassed
+directly, and then acts as a mix-in class.  You can also register
+unrelated concrete classes (even built-in classes) and unrelated
+ABCs as 'virtual subclasses' -- these and their descendants will
+be considered subclasses of the registering ABC by the built-in
+issubclass() function, but the registering ABC won't show up in
+their MRO (Method Resolution Order) nor will method
+implementations defined by the registering ABC be callable (not
+even via super()).</p></div>
+    </div>
+  <div class="mkapi-section methods">
+      <div class="mkapi-section-name methods">
+          <span class="mkapi-section-name-body methods">Methods</span> 
+        </div>
+      <div class="mkapi-section-body methods"><ul class="mkapi-items">
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#typing._ProtocolMeta.__instancecheck__">__instancecheck__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">instance</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Override for isinstance(instance, cls).</span></li>
+
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#abc.ABCMeta.__subclasscheck__">__subclasscheck__</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Override for issubclass(subclass, cls).</span></li>
+
+<li class="staticmethod"><code class="mkapi-item-name"><a href="#abc.ABCMeta.register">register</a></code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code>
+
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">Register a virtual subclass of an ABC.</span></li>
+
+
+</ul></div>
+    </div>
+  </div>
+
+  <div class="mkapi-members">
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="abc.ABCMeta.register">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">register</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Register a virtual subclass of an ABC.</p>
+<p>Returns the subclass, to allow usage as a class decorator.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="abc.ABCMeta.__subclasscheck__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">__subclasscheck__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">subclass</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Override for issubclass(subclass, cls).</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing._ProtocolMeta.__instancecheck__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object staticmethod code">
+    <div class="mkapi-object-kind staticmethod">staticmethod</div>
+    <div class="mkapi-object-body staticmethod"><code class="mkapi-object-name">__instancecheck__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">cls</code>, <code class="mkapi-object-signature">instance</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Override for isinstance(instance, cls).</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="typing.Protocol.__init_subclass__">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object classmethod code">
+    <div class="mkapi-object-kind classmethod">classmethod</div>
+    <div class="mkapi-object-body classmethod"><code class="mkapi-object-name">__init_subclass__</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">*args</code>, <code class="mkapi-object-signature">**kwargs</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>This method is called when a class is subclassed.</p>
+<p>The default implementation does nothing. It may be
+overridden to extend subclasses.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="benchbuild.source.git.Git.fetch">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object method code">
+    <div class="mkapi-object-kind method">method</div>
+    <div class="mkapi-object-body method"><code class="mkapi-object-name">fetch</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Clone the repository, if needed.</p>
+<p>This will create a git clone inside the global cache directory.</p></div>
+    </div>
+  <div class="mkapi-section parameters">
+      <div class="mkapi-section-name parameters">
+          <span class="mkapi-section-name-body parameters">Parameters</span> 
+        </div>
+      <div class="mkapi-section-body parameters"><ul class="mkapi-items">
+<li><code class="mkapi-item-name">version</code>
+<span class="mkapi-item-type">(Optional[str], optional)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">[description]. Defaults to None.</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section returns">
+      <div class="mkapi-section-name returns">
+          <span class="mkapi-section-name-body returns">Returns</span> <span class="mkapi-item-type">(str)</span>
+        </div>
+      <div class="mkapi-section-body returns"><p>[description]</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="benchbuild.source.git.Git.version">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object method code">
+    <div class="mkapi-object-kind method">method</div>
+    <div class="mkapi-object-body method"><code class="mkapi-object-name">version</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-signature">target_dir</code>, <code class="mkapi-object-signature">version=&#39;HEAD&#39;</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>Create a new git worktree pointing to the requested version.</p></div>
+    </div>
+  <div class="mkapi-section parameters">
+      <div class="mkapi-section-name parameters">
+          <span class="mkapi-section-name-body parameters">Parameters</span> 
+        </div>
+      <div class="mkapi-section-body parameters"><ul class="mkapi-items">
+<li><code class="mkapi-item-name">target_dir</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">The filesystem path where the new worktree should live.</span></li>
+
+<li><code class="mkapi-item-name">version</code>
+<span class="mkapi-item-type">(str)</span>
+<span class="mkapi-item-dash">&mdash;</span> <span class="mkapi-item-description">The desired version the new worktree needs to point to.
+Defaults to 'HEAD'.</span></li>
+
+
+</ul></div>
+    </div>
+  <div class="mkapi-section returns">
+      <div class="mkapi-section-name returns">
+          <span class="mkapi-section-name-body returns">Returns</span> <span class="mkapi-item-type">(str)</span>
+        </div>
+      <div class="mkapi-section-body returns"><p>[description]</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+    <div class="mkapi-member">
+      <div class="mkapi-node" id="benchbuild.source.git.Git.versions">
+<div class='mkapi-object-container'>
+  <div class="mkapi-object method code">
+    <div class="mkapi-object-kind method">method</div>
+    <div class="mkapi-object-body method"><code class="mkapi-object-name">versions</code><code class="mkapi-object-parenthesis">(</code><code class="mkapi-object-parenthesis">)</code></div>
+  </div>
+  
+</div>
+<div class="mkapi-docstring">
+<div class="mkapi-section">
+      <div class="mkapi-section-body"><p>List all available versions of this source.</p></div>
+    </div>
+  <div class="mkapi-section returns">
+      <div class="mkapi-section-name returns">
+          <span class="mkapi-section-name-body returns">Returns</span> <span class="mkapi-item-type">(List[str])</span>
+        </div>
+      <div class="mkapi-section-body returns"><p>The list of all available versions.</p></div>
+    </div>
+  </div>
+
+</div>
+    </div>
+  
+  </div>
+
+</div>
+
+<h2 id="rsync">Rsync</h2>
+<p>TODO.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../environments/" class="btn btn-neutral float-right" title="Environment">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../basics/containers/" class="btn btn-neutral" title="Containers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/PolyJIT/benchbuild" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../basics/containers/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../environments/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../js/mkapi.js"></script>
+      <script src="../../js/pheasant.js"></script>
+      <script src="../../search/main.js"></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
